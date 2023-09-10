@@ -1,0 +1,11 @@
+TableId,TableName,ClassId,ClassNumber,WindowID,WindowName,DoorID,DoorName,DeskId,DeskName,ChalkID,ChalkName,ChairID,ChairName
+1,Table1,1,296,1,Window1,1,Door1,1,Desk1,1,Chalk1,1,Chair1
+2,Table2,,,2,Window2,,,,,,,2,Chair2
+3,Table3,,,,,,,,,,,3,Chair3
+4,Table4,,,,,,,,,,,4,Chair4
+5,Table5,,,,,,,,,,,5,Chair5
+6,Table6,,,,,,,,,,,6,Chair6
+7,Table7,,,,,,,,,,,7,Chair7
+8,Table8,,,,,,,,,,,8,Chair8
+9,Table9,,,,,,,,,,,9,Chair9
+10,Table10,,,,,,,,,,,10,Chair10

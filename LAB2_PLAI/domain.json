@@ -1,0 +1,80 @@
+{
+  "domain_name": "TPP-Propositional",
+  "requirements": ["strips", "typing"],
+  "types": ["place", "locatable", "level", "depot", "market", "truck", "goods"],
+  "predicates": [
+    "loaded",
+    "ready-to-load",
+    "stored",
+    "on-sale",
+    "next",
+    "at",
+    "connected"
+  ],
+  "actions": [
+    {
+      "name": "drive",
+      "parameters": [
+        {"name": "?t", "type": "truck"},
+        {"name": "?from", "type": "place"},
+        {"name": "?to", "type": "place"}
+      ],
+      "preconditions": ["(and (at ?t ?from) (connected ?from ?to))"],
+      "effects": ["(and (not (at ?t ?from)) (at ?t ?to))"]
+    },
+    {
+      "name": "load",
+      "parameters": [
+        {"name": "?g", "type": "goods"},
+        {"name": "?t", "type": "truck"},
+        {"name": "?m", "type": "market"},
+        {"name": "?l1", "type": "level"},
+        {"name": "?l2", "type": "level"},
+        {"name": "?l3", "type": "level"},
+        {"name": "?l4", "type": "level"}
+      ],
+      "preconditions": [
+        "(and (at ?t ?m) (loaded ?g ?t ?l3) (ready-to-load ?g ?m ?l2) (next ?l2 ?l1) (next ?l4 ?l3))"
+      ],
+      "effects": [
+        "(and (loaded ?g ?t ?l4) (not (loaded ?g ?t ?l3)) (ready-to-load ?g ?m ?l1) (not (ready-to-load ?g ?m ?l2)))"
+      ]
+    },
+    {
+      "name": "unload",
+      "parameters": [
+        {"name": "?g", "type": "goods"},
+        {"name": "?t", "type": "truck"},
+        {"name": "?d", "type": "depot"},
+        {"name": "?l1", "type": "level"},
+        {"name": "?l2", "type": "level"},
+        {"name": "?l3", "type": "level"},
+        {"name": "?l4", "type": "level"}
+      ],
+      "preconditions": [
+        "(and (at ?t ?d) (loaded ?g ?t ?l2) (stored ?g ?l3) (next ?l2 ?l1) (next ?l4 ?l3))"
+      ],
+      "effects": [
+        "(and (loaded ?g ?t ?l1) (not (loaded ?g ?t ?l2)) (stored ?g ?l4) (not (stored ?g ?l3)))"
+      ]
+    },
+    {
+      "name": "buy",
+      "parameters": [
+        {"name": "?t", "type": "truck"},
+        {"name": "?g", "type": "goods"},
+        {"name": "?m", "type": "market"},
+        {"name": "?l1", "type": "level"},
+        {"name": "?l2", "type": "level"},
+        {"name": "?l3", "type": "level"},
+        {"name": "?l4", "type": "level"}
+      ],
+      "preconditions": [
+        "(and (at ?t ?m) (on-sale ?g ?m ?l2) (ready-to-load ?g ?m ?l3) (next ?l2 ?l1) (next ?l4 ?l3))"
+      ],
+      "effects": [
+        "(and (on-sale ?g ?m ?l1) (not (on-sale ?g ?m ?l2)) (ready-to-load ?g ?m ?l4) (not (ready-to-load ?g ?m ?l3)))"
+      ]
+    }
+  ]
+}

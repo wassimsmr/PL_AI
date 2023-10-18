@@ -1,0 +1,23 @@
+{
+  "problem": "BLOCKS-4-0",
+  "domain": "BLOCKS",
+  "objects": ["D", "B", "A", "C"],
+  "init": [
+    {"CLEAR": "C"},
+    {"CLEAR": "A"},
+    {"CLEAR": "B"},
+    {"CLEAR": "D"},
+    {"ONTABLE": "C"},
+    {"ONTABLE": "A"},
+    {"ONTABLE": "B"},
+    {"ONTABLE": "D"},
+    {"HANDEMPTY": []}
+  ],
+  "goal": {
+    "and": [
+      {"ON": "D", "C": "C"},
+      {"ON": "C", "B": "B"},
+      {"ON": "B", "A": "A"}
+    ]
+  }
+}
